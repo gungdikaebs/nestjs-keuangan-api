@@ -15,12 +15,13 @@ const prisma_module_1 = require("./prisma/prisma.module");
 const users_module_1 = require("./users/users.module");
 const payment_methods_module_1 = require("./payment-methods/payment-methods.module");
 const categories_module_1 = require("./categories/categories.module");
+const transactions_module_1 = require("./transactions/transactions.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [auth_module_1.AuthModule, prisma_module_1.PrismaModule, users_module_1.UsersModule, payment_methods_module_1.PaymentMethodsModule, categories_module_1.CategoriesModule],
+        imports: [auth_module_1.AuthModule, prisma_module_1.PrismaModule, users_module_1.UsersModule, payment_methods_module_1.PaymentMethodsModule, categories_module_1.CategoriesModule, transactions_module_1.TransactionsModule],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })
