@@ -59,6 +59,20 @@ let TransactionsService = class TransactionsService {
             },
         });
     }
+    async delete(userId, transactionId) {
+        const trx = await this.prisma.transaction.findFirst({
+            where: {
+                id: transactionId,
+                userId,
+            },
+        });
+        if (!trx) {
+            throw new common_1.NotFoundException('Transaction not found');
+        }
+        return this.prisma.transaction.delete({
+            where: { id: transactionId },
+        });
+    }
 };
 exports.TransactionsService = TransactionsService;
 exports.TransactionsService = TransactionsService = __decorate([

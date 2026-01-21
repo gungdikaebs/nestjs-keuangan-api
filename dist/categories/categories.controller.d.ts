@@ -9,6 +9,7 @@ export declare class CategoriesController {
         type: import(".prisma/client").CategoryType;
         userId: number;
         createdAt: Date;
+        deletedAt: Date | null;
     }, unknown> & {}, never, import("@prisma/client/runtime/library").DefaultArgs>;
     findAll(req: any): import(".prisma/client").Prisma.PrismaPromise<(import("@prisma/client/runtime/library").GetResult<{
         id: number;
@@ -16,5 +17,14 @@ export declare class CategoriesController {
         type: import(".prisma/client").CategoryType;
         userId: number;
         createdAt: Date;
+        deletedAt: Date | null;
     }, unknown> & {})[]>;
+    delete(req: any, id: number): Promise<import("@prisma/client/runtime/library").GetResult<{
+        id: number;
+        name: string;
+        type: import(".prisma/client").CategoryType;
+        userId: number;
+        createdAt: Date;
+        deletedAt: Date | null;
+    }, unknown> & {}>;
 }

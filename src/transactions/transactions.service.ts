@@ -56,4 +56,22 @@ export class TransactionsService {
             },
         });
     }
+
+    async delete(userId: number, transactionId: number) {
+        const trx = await this.prisma.transaction.findFirst({
+            where: {
+                id: transactionId,
+                userId,
+            },
+        });
+
+        if (!trx) {
+            throw new NotFoundException('Transaction not found');
+        }
+
+        return this.prisma.transaction.delete({
+            where: { id: transactionId },
+        });
+    }
+
 }

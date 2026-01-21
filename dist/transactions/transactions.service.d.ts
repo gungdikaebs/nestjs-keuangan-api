@@ -20,6 +20,7 @@ export declare class TransactionsService {
             type: import(".prisma/client").CategoryType;
             userId: number;
             createdAt: Date;
+            deletedAt: Date | null;
         }, unknown> & {};
         paymentMethod: import("@prisma/client/runtime/library").GetResult<{
             id: number;
@@ -37,4 +38,14 @@ export declare class TransactionsService {
         paymentMethodId: number;
         createdAt: Date;
     }, unknown> & {})[]>;
+    delete(userId: number, transactionId: number): Promise<import("@prisma/client/runtime/library").GetResult<{
+        id: number;
+        amount: number;
+        note: string | null;
+        date: Date;
+        userId: number;
+        categoryId: number;
+        paymentMethodId: number;
+        createdAt: Date;
+    }, unknown> & {}>;
 }

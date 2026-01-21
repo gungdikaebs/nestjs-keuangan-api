@@ -28,6 +28,9 @@ let TransactionsController = class TransactionsController {
     findAll(req) {
         return this.service.findAll(req.user.sub);
     }
+    delete(req, id) {
+        return this.service.delete(req.user.sub, id);
+    }
 };
 exports.TransactionsController = TransactionsController;
 __decorate([
@@ -45,6 +48,14 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], TransactionsController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Delete)(':id'),
+    __param(0, (0, common_1.Request)()),
+    __param(1, (0, common_1.Param)('id', common_1.ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Number]),
+    __metadata("design:returntype", void 0)
+], TransactionsController.prototype, "delete", null);
 exports.TransactionsController = TransactionsController = __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Controller)('transactions'),

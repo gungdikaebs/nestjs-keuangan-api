@@ -32,6 +32,31 @@ let CategoriesService = class CategoriesService {
             orderBy: { createdAt: 'desc' },
         });
     }
+    async delete(userId, categoryId) {
+        const category = await this.prisma.category.findFirst({
+            where: {
+                id: categoryId,
+                userId,
+            },
+        });
+        if (!category) {
+            throw new common_1.NotFoundException('Category not found');
+        }
+        const used = await this.prisma.transaction.count({
+            where: {
+                categoryId,
+                userId,
+            },
+        });
+        if (used > 0) {
+            throw new common_1.BadRequestException('Category is used in transactions');
+        }
+        return this.prisma.category.delete({
+            where: {
+                id: categoryId,
+            },
+        });
+    }
 };
 exports.CategoriesService = CategoriesService;
 exports.CategoriesService = CategoriesService = __decorate([
