@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Body, UseGuards, Request } from '@nestjs/common';
+import { Controller, Post, Get, Body, UseGuards, Request, Delete, Param, ParseIntPipe } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { PaymentMethodsService } from './payment-methods.service';
 import { CreatePaymentMethodDto } from './dto/create-payment-method.dto';
@@ -18,5 +18,12 @@ export class PaymentMethodsController {
     findAll(@Request() req) {
         const userId = req.user.sub;
         return this.service.findAll(userId);
+    }
+    @Delete(':id')
+    delete(
+        @Request() req,
+        @Param('id', ParseIntPipe) id: number,
+    ) {
+        return this.service.delete(req.user.sub, id);
     }
 }

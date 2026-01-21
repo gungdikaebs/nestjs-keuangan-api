@@ -31,6 +31,31 @@ let PaymentMethodsService = class PaymentMethodsService {
             orderBy: { createdAt: 'desc' },
         });
     }
+    async delete(userId, paymentMethodId) {
+        const paymentMethod = await this.prisma.paymentMethod.findFirst({
+            where: {
+                id: paymentMethodId,
+                userId,
+            },
+        });
+        if (!paymentMethod) {
+            throw new common_1.NotFoundException('Payment method not found');
+        }
+        const used = await this.prisma.transaction.count({
+            where: {
+                paymentMethodId,
+                userId,
+            },
+        });
+        if (used > 0) {
+            throw new common_1.BadRequestException('Payment method is used in transactions');
+        }
+        return this.prisma.paymentMethod.delete({
+            where: {
+                id: paymentMethodId,
+            },
+        });
+    }
 };
 exports.PaymentMethodsService = PaymentMethodsService;
 exports.PaymentMethodsService = PaymentMethodsService = __decorate([

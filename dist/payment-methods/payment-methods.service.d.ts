@@ -14,4 +14,10 @@ export declare class PaymentMethodsService {
         userId: number;
         createdAt: Date;
     }, unknown> & {})[]>;
+    delete(userId: number, paymentMethodId: number): Promise<import("@prisma/client/runtime/library").GetResult<{
+        id: number;
+        name: string;
+        userId: number;
+        createdAt: Date;
+    }, unknown> & {}>;
 }

@@ -15,4 +15,10 @@ export declare class PaymentMethodsController {
         userId: number;
         createdAt: Date;
     }, unknown> & {})[]>;
+    delete(req: any, id: number): Promise<import("@prisma/client/runtime/library").GetResult<{
+        id: number;
+        name: string;
+        userId: number;
+        createdAt: Date;
+    }, unknown> & {}>;
 }

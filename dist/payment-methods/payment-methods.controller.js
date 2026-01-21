@@ -30,6 +30,9 @@ let PaymentMethodsController = class PaymentMethodsController {
         const userId = req.user.sub;
         return this.service.findAll(userId);
     }
+    delete(req, id) {
+        return this.service.delete(req.user.sub, id);
+    }
 };
 exports.PaymentMethodsController = PaymentMethodsController;
 __decorate([
@@ -47,6 +50,14 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], PaymentMethodsController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Delete)(':id'),
+    __param(0, (0, common_1.Request)()),
+    __param(1, (0, common_1.Param)('id', common_1.ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Number]),
+    __metadata("design:returntype", void 0)
+], PaymentMethodsController.prototype, "delete", null);
 exports.PaymentMethodsController = PaymentMethodsController = __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Controller)('payment-methods'),
